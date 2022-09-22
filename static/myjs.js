@@ -48,9 +48,6 @@ function commentPost(index, id) {
   });
 }
 
-// likes_temp location.reload를 쓰지 않기 위한 전역 변수화
-let likes_temp = ``;
-
 function get_posts(username, page) {
   if (username === undefined) {
     username = "";
@@ -79,6 +76,7 @@ function get_posts(username, page) {
           let commentCounts = 0;
           let comment_temp_test = ``;
           let likes_temp_content;
+          let likes_temp = ``;
 
           for (let z = 0; z < likes_test.length; z++) {
             if (likes_test[z]["post_id"] === post._id) {
