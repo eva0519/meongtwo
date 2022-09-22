@@ -16,7 +16,7 @@ app.config['UPLOAD_FOLDER'] = "./static/profile_pics"
 SECRET_KEY = 'SPARTA'
 
 # 페이저 포스트 노출 갯수
-page_view_config = 3
+page_view_config = 10
 
 ca = certifi.where()
 
@@ -254,8 +254,10 @@ def get_posts():
         my_username = payload["id"]
         username_receive = request.args.get("username_give")
 
-        # 페이저 기능
-        # sort(기준 필드,디폴트 값은 정렬(ascending) -1은 역정렬(descending)), list(가져올 갯 수), skip(건너뛸 갯 수 offset)
+        # 페이저 기능 ( 등차수열 공식 : an = a + (n - 1)d  초항+(계수-1)차수 )
+        # // int start 1+(page-1)*10    1 11 21 31
+        # // int end 10*page           10 20 30 40
+        # sort(기준 필드,디폴트 값은 정렬(ascending) -1은 역정렬(descending)), limit(가져올 갯 수), skip(건너뛸 갯 수 offset)
         page_receive = request.args.get("page")
 
         if page_receive is not None and page_receive != "":
